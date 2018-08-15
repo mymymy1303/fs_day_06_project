@@ -1,0 +1,179 @@
+extends _layout/layout
+
+block variables
+	- var title = 'Home'
+	- var description = 'Description for home page'
+	- var bodyclass = 'home'
+
+block body
+	//WELCOM SECTION
+	section.home_welcome
+		.container
+			.row
+				.col
+					h1 
+						|Hi there! We are the new kids on the block 
+						br.responsive_break
+						|and we build awesome websites and mobile apps.
+					a.btn.btn_orange work with us!
+	//SERVICES SECTION
+	section.home_services
+		.container
+			.row
+				.col.page_title.page_title_white
+					h2 services we provide
+					p
+						|We are working with both individuals and businesses from all over the globe 
+						br.responsive_break
+						|to create awesome websites and applications. 
+			.row
+				//LOOP FOR SERVICE BLOCKS
+				- var services_index = 0;
+				while services_index < 4
+					.col-sm-6.col-md-3.services_item
+						img(src="./img/home_icon_" + ++services_index + ".png", alt="").img-fluid
+						.block_title.block_title_white
+							h3 Lorem ipsum
+							p Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis assumenda temporibus saepe, accusamus esse blanditiis.
+	//TEAM SECTION
+	section.home_team
+		.container
+			.row
+				.col.page_title.page_title_wetashpalt
+					h2 meet out beautiful team
+					p We are a small team of designers and developers, who help brands with big ideas.
+			.row
+				//LOOP FOR TEAM BLOCKS
+				- var team_index = 1
+				while team_index < 5
+					.col-sm-6.col-md-3.team_items
+						figure
+							img(src="./img/home_team_1_avatar.png", alt="").img-fluid
+						h3 Lorem ipsum dolor
+						p.team_position Lorem ipsum
+						p Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis assumenda temporibus saepe, accusamus esse blanditiis.
+						ul.list-inline
+							li.list-inline-item
+								a.btn(href="#")
+									i.fa.fa-facebook
+							li.list-inline-item
+								a.btn(href="#")
+									i.fa.fa-twitter
+							li.list-inline-item
+								a.btn(href="#")
+									i.fa.fa-linkedin
+							li.list-inline-item
+								a.btn(href="#")
+									i.fa.fa-envelope
+					- team_index++
+	//SKILL SECTION
+	section.home_skill
+		.container
+			.row
+				.col.page_title.page_title_wetashpalt
+					h2 we got skill
+					p 
+						|Lorem ipsum dolor sit amet consectetur adipisicing elit 
+						br
+						|assumenda aperiam, asperiores magni.
+			.row
+				//LOOP FOR SKILL BLOCKS
+				- var title_index = 1
+				each skill_percentage, skill_index in {1:'90', 2:'75', 3:'70', 4:'85'}
+					.col-sm-6.col-md-3.skill_items
+						div(class="circle_progress circle_progress_" + skill_index)
+							span.circle_progress_left
+								span.circle_progress_bar
+							span.circle_progress_right
+								span.circle_progress_bar
+							.circle_progress_value= skill_percentage + '%'
+						.block_title.block_title_wetashpalt
+							case title_index
+								when 1
+									h3 web design
+								when 2
+									h3 html / css
+								when 3
+									h3 graphic design
+								when 4
+									h3 ui / ux
+					- title_index++
+	//PORTFOLIO SECTION
+	section.home_portfolio
+		.container
+			.row
+				.col.page_title.page_title_wetashpalt
+					h2 our portfolio
+					p 
+						|Lorem ipsum dolor sit amet consectetur adipisicing elit 
+						br
+						|assumenda aperiam, asperiores magni.
+			.row
+				.col.portfolio_menu_wrapper
+					ul.list-inline
+						li.list-inline-item
+							a(href="#") all
+						li.list-inline-item 
+							a(href="#") web
+						li.list-inline-item 
+							a(href="#") apps
+						li.list-inline-item 
+							a(href="#") icons
+			.row.portfolio_works_wrapper
+				//LOOP FOR PORTFOLIO BLOCKS
+				each works_index in [1,2,3,4]
+					.col-md-6.block_title.block_title_wetashpalt.portfolio_items
+						figure
+							img.img-fluid(src="./img/home_works_" + works_index + ".png", alt="")
+						h3 Lorem ipsum dolor
+			.row
+				.col
+					p 
+						a.btn.btn_green(href="#") load more projects
+	//FEEDBACK SECTION
+	section.home_feedback
+		.container
+			.row
+				.col.page_title.page_title_white
+					h2 what people say about us
+					p Our clients love us 
+			.row.feedback_wrapper
+				each works_index in [1,2,3,4]
+					.col-sm-6.col-md-6.feedback_items
+						.row
+							.col-md-3.feedback_avatar_wrapper
+								img(src="./img/home_team_1_avatar.png").img-fluid
+							.col-md-9
+								p.feedback_content "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis sunt atque blanditiis minima reiciendis, incidunt non ex sit nostrum quia quisquam totam quidem!"
+								.row
+									.col
+										h3.feedback_name chanel iman
+								.row
+									.col
+										p.feedback_roles CEO of Pinterest
+	//CONTACT SECTION
+	section.home_contact
+		.container
+			.row
+				.col.page_title.page_title_white
+					h2 get in touch
+					p 1600 Pennsylvania Ave NW, Washington, DC 20500, United States of America. Tel: (202) 456-1111
+			.row
+				.col
+					form(action="#" method="post")
+						.row
+							.offset-md-1
+							.col-md-5.textbox_wrapper
+								input(type="text" placeholder="Your Name" required)
+								span.required_icon *
+							.col-md-5.textbox_wrapper
+								input(type="email" placeholder="Your Email" required)
+								span.required_icon *
+						.row
+							.offset-md-1
+							.col-md-10.textbox_wrapper
+								textarea(placeholder="Your Message" required)
+								span.required_icon *
+						.row
+							.col
+								button(type="submit").btn.btn_blue send message

@@ -1,0 +1,58 @@
+
+html, body
+	font-family: 'Roboto', sans-serif
+	font-size: 14px
+	height: 100%
+	width: 100%
+
+.responsive_break
+	display: none
+	+media-breakpoint-up(md)
+		//TABLET, MEDIUM DESKTOP,...
+		display: block
+.page_title
+	h2
+		position: relative
+		margin-bottom: 25px
+		text-transform: uppercase
+		letter-spacing: 4px
+		&:after
+			content: ''
+			display: block
+			position: absolute
+			width: 70px
+			height: 4px
+			background: rgba(0,0,0,0.3)
+			bottom: 0
+			left: 50%
+			transform: translateX(-50%)
+			margin-bottom: -15px
+	p
+		font-size: 1rem
+		margin-top: 35px
+		margin-bottom: 60px
+	&.page_title_white
+		h2,p
+			color: white
+	&.page_title_wetashpalt
+		h2,p
+			color: $wet-ashpalt
+		h2
+			&:after
+				background: rgba(0,0,0,0.15)
+
+
+.block_title
+	h3
+		text-transform: uppercase
+		letter-spacing: 1px
+	p
+		font-size: 1rem
+	&.block_title_white
+		h3,p
+			color: white
+			margin-top: 20px
+	&.block_title_wetashpalt
+		h3,p
+			color: $wet_ashpalt
+

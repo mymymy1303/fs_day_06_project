@@ -1,0 +1,355 @@
+$progress_size: 160px
+$progress_bar_size: 12px
+=section($section_bg: white, $section_min_height: 368px)
+	width: 100%
+	min-height: $section_min_height
+	display: flex
+	justify-content: center
+	align-items: center
+	text-align: center
+	background-color: $section_bg
+	padding: 3rem 0 3rem 0
+
+=button($btn_bg: green, $btn_color: white, $btn_height: 60px, $btn_width: 300px, $btn_fz: 1rem)
+	width: $btn_width
+	height: $btn_height
+	padding: 0
+	line-height: $btn_height
+	background-color: $btn_bg
+	color: $btn_color
+	text-align: center
+	text-transform: uppercase
+	font-size: $btn_fz
+	font-weight: 500
+	border: 0
+	box-shadow: inset 0 -4px 0 0 darken($btn_bg, 10%)
+
+=circle_progress($color, $percentage)
+	.circle_progress_right
+		.circle_progress_bar
+			border-color: $color 
+			@if $percentage < 50
+				transform: rotate(#{$percentage*3.6}deg)
+			@else
+				transform: rotate(180deg)
+	.circle_progress_left
+		.circle_progress_bar                
+			border-color: $color
+			@if $percentage <= 50
+				transform: rotate(0deg)
+			@else 
+				transform: rotate(#{$percentage*3.6 - 180}deg)
+
+=textbox_textarea($textbox_bg, $textbox_color)
+	width: 100%
+	height: 50px
+	line-height: 50px
+	outline: none
+	border: none
+	border-radius: 4px
+	background-color: $textbox_bg
+	color: $textbox_color
+	font-size: 1rem
+	padding-left: 10px
+
+=placeholder_style
+	color: white
+
+=placeholder_style_focus
+	opacity: 0
+
+=apply_placeholder 
+	&::-webkit-input-placeholder 
+		+placeholder_style
+	&:-moz-placeholder 
+		+placeholder_style
+	&::-moz-placeholder 
+		+placeholder_style
+	&:-ms-input-placeholder 
+		+placeholder_style
+	&:placeholder 
+		+placeholder_style
+	&:focus::-webkit-input-placeholder 
+		+placeholder_style_focus
+	&:focus:-moz-placeholder 
+		+placeholder_style_focus
+	&:focus::-moz-placeholder 
+		+placeholder_style_focus
+	&:focus:-ms-input-placeholder 
+		+placeholder_style_focus
+	&:focus:placeholder 
+		+placeholder_style_focus
+	
+//WELCOME SECTION
+.home_welcome	
+	//PORTRAIT PHONE
+	+section($wisteria)
+	h1
+		color: white
+		margin-bottom: 3rem
+	a.btn_orange
+		+button($carrot, white, 60px, 90%, 1rem)
+	+media-breakpoint-up(sm)
+		//LANDSCAPE PHONES
+		h1
+			font-size: 2rem
+		a.btn_orange
+			width: 240px
+	+media-breakpoint-up(md)
+		//TABLET, MEDIUM DESKTOP,...
+		padding: 5rem 0 5rem 0
+	+media-breakpoint-up(lg)
+		//LARGE DESKTOPS
+		h1
+			font-size: 2.5rem
+
+//SERVICES SECTION
+.home_services
+	+section($tquoise, 400px)
+	.services_item
+		margin-bottom: 0
+		+media-breakpoint-down(xs)
+			//PORTRAIT PHONE 
+			margin-bottom: 6rem
+			&:last-child
+				margin-bottom: 0
+
+
+//TEAM SECTION
+.home_team
+	+section(lighten($wet-ashpalt, 65%))
+	.team_items
+		figure
+			border-radius: 50%
+			img
+				border-radius: 50%
+		h3
+			text-transform: uppercase
+			font-weight: 700
+		p.team_position
+			color: lighten($peter-river,20%	)
+			font-weight: 500
+			font-size: 1.2rem
+		ul
+			font-size: 0
+			li
+				background-color: lighten($wet-ashpalt, 50%)
+				width: 2rem
+				height: 2rem
+				border-radius: 50%
+				a
+					display: block
+					padding: 0
+					border: 0
+					color: white
+					width: 2rem
+					height: 2rem
+					line-height: 2rem
+					border-radius: 50%
+	+media-breakpoint-down(xs)
+		//PORTRAIT PHONE 
+		.team_items
+			margin-bottom: 7rem
+			&:last-child
+				margin-bottom: 0
+			ul
+				li
+					margin-left: 15px
+
+//SKILL SECTION
+.home_skill
+	+section($whites)
+	.skill_items
+		.circle_progress
+			width: $progress_size
+			height: $progress_size
+			position: relative
+			left: 50%
+			transform: translateX(-50%)
+			margin-bottom: 2rem
+			&:after
+				content: ''
+				display: block
+				width: 100%
+				height: 100%
+				border-radius: 50%
+				border: $progress_bar_size solid $silver
+				position: absolute
+				top: 0
+				left: 0
+			span
+				width: 50%
+				height: 100%
+				overflow: hidden
+				position: absolute
+				top: 0
+				z-index: 1
+			.circle_progress_bar
+				width: 100%
+				height: 100%
+				border-width: $progress_bar_size
+				border-style: solid
+				position: absolute
+				top: 0
+			.circle_progress_value
+				width: 100%
+				height: 100%
+				border-radius: 50%
+				font-size: 3rem
+				color: darken($wet_ashpalt, 15%)
+				text-align: center
+				position: absolute
+				top: 0
+				left: 0
+				display: flex
+				justify-content: center
+				align-items: center
+			.circle_progress_left
+				left: 1px
+				.circle_progress_bar
+					left: 100%
+					border-top-right-radius: ($progress_size + $progress_bar_size)/2
+					border-bottom-right-radius: ($progress_size + $progress_bar_size)/2
+					border-left: 0
+					transform-origin: center left
+			.circle_progress_right
+				right: 0
+				.circle_progress_bar
+					left: -100%
+					border-top-left-radius: ($progress_size + $progress_bar_size)/2
+					border-bottom-left-radius: ($progress_size + $progress_bar_size)/2
+					border-right: 0
+					transform-origin: center right
+		.circle_progress_1
+			+circle_progress($peter-river, 90)
+		.circle_progress_2
+			+circle_progress($amethyst, 75)
+		.circle_progress_3
+			+circle_progress($nephritis, 70)
+		.circle_progress_4
+			+circle_progress($pumpkin, 85)
+	+media-breakpoint-down(xs)
+		//PORTRAIT PHONE 
+		.skill_items
+			margin-bottom: 6rem
+			&:last-child
+				margin-bottom: 0
+
+//PORTFOLIO SECTION
+.home_portfolio
+	+section(lighten($dangerorange, 30%))
+	a.btn_green
+		+button($tquoise, white, 60px, 90%, 1rem)
+		margin-top: 6rem
+	.portfolio_items
+		margin-bottom: 6rem
+		&:last-child
+			margin-bottom: 0
+	ul
+		font-size: 0
+		margin-bottom: 3rem
+		li
+			background-color: rgba(0,0,0,0.2)
+			width: 4rem
+			height: 2rem
+			border-radius: 3px
+			a
+				display: block
+				padding: 0
+				border: 0
+				text-transform: uppercase
+				text-decoration: none
+				font-size: 1rem
+				color: black
+				width: 4rem
+				height: 2rem
+				line-height: 2rem
+	+media-breakpoint-up(sm)
+		//LANDSCAPE PHONES
+		h1
+			font-size: 2rem
+		a.btn_green
+			width: 240px
+	+media-breakpoint-up(md)
+		//TABLET, MEDIUM DESKTOP,...
+		padding: 5rem 0 5rem 0
+		a.btn_green			
+			margin-top: 0
+	+media-breakpoint-up(lg)
+		//LARGE DESKTOPS
+		h1
+			font-size: 2.5rem
+
+//FEEDBACK SECTION
+.home_feedback
+	+section(#d74680)
+	.feedback_wrapper
+		text-align: left
+		.feedback_avatar_wrapper
+			display: flex
+			justify-content: center
+			align-items: start
+		img
+			display: block
+			border-radius: 50%
+		.feedback_content
+			color: white
+			font-style: italic
+			font-size: 1.2rem
+			margin: 0
+			text-align: justify
+		.feedback_name
+			color: white
+			text-transform: uppercase
+			font-weight: 700
+			margin: 0
+			margin-top: 20px
+		.feedback_roles
+			font-size: 1.1rem
+			font-weight: 400
+			color: lighten($sun-flower,10%)
+			letter-spacing: 0.5px
+			margin: 0
+		+media-breakpoint-down(sm)
+			//PORTRAIT PHONE, LANDSCAPE PHONES
+			.feedback_roles,.feedback_name
+				text-align: center
+			.feedback_items
+				margin-bottom: 5rem
+				&:last-child
+					margin-bottom: 0
+		+media-breakpoint-up(md)
+		//TABLET AND UP
+			.feedback_items
+				margin-top: 30px
+
+//CONTACT_SECTION
+//Contact section
+.home_contact
+	+section($xanh)
+	input
+		+textbox_textarea(darken($xanh, 15%), white)
+		+apply_placeholder
+	textarea
+		min-height: 200px
+		+textbox_textarea(darken($xanh, 15%), white)
+		+apply_placeholder
+	.textbox_wrapper
+		position: relative                 
+		margin-bottom: 10px
+		margin-top: 20px
+		.required_icon 
+			color: $pomegranate
+			position: absolute
+			top: 0
+			right: 25px
+			line-height: 50px
+			font-size: 2rem
+	button.btn_blue
+		+button(#30bae7, $whites, 60px, 100%, 1rem)
+		margin-top: 2rem
+	+media-breakpoint-up(md)
+		//TABLET AND UP
+		button.btn_blue
+			width: 240px
+		
